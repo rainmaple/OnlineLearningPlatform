@@ -28,8 +28,8 @@ public final class The {
     }
 
     public static class API {
-        private final static String ACCESS = "LTAINbH9JXc8UW4y";
-        private final static String SECRET = "tdtAyDvVdusjPkI63IbQKDJFTOt01Y";
+        private final static String ACCESS = "你的api账号";
+        private final static String SECRET = "你的apisecret";
         private final static String END_POINT = "https://live.aliyuncs.com/";
         private final static String API_VERSION = "2016-11-01";
         private final static String SIG_VERSION = "1.0";
