@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 映射数据库的admin表 -->
+    <class name="com.learning.entity.CourseTeacher" table="courseteacher">
+    	<!-- 映射id字段 -->
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        
+        <!-- 映射teacherid字段 -->
+        <property name="teacherid" type="java.lang.Integer">
+            <column name="teacherid" length="20" not-null="true" />
+        </property>
+        
+        <!-- 映射老师的名字字段 -->
+        <property name="teachername" type="java.lang.String">
+        	<column name="teachername" length="50" not-null="true" />
+        </property>
+        
+        <!-- 映射评论id字段 -->
+        <property name="courseid" type="java.lang.Integer">
+            <column name="courseid" length="50" not-null="true" />
+        </property>
+        
+        <!-- 映射讲师的话 -->
+        <property name="teachersay" type="java.lang.String">
+        	<column name="teachersay" length="500" not-null="true" />
+        </property>
+      
+     
+      
+    </class>
+</hibernate-mapping>

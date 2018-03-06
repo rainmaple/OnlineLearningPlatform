@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 映射数据库的admin表 -->
+    <class name="com.learning.entity.Comment" table="comment">
+    	<!-- 映射对应的问题id字段 -->
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <!-- 映射回复的主题内容字段 -->
+        <property name="commentmain" type="java.lang.String">
+            <column name="content" length="300" not-null="true" />
+        </property>
+        <!-- 映射回复时间字段 -->
+        <property name="responsetime" type="java.lang.String">
+            <column name="responsetime" length="50" not-null="true" />
+        </property>
+        <!-- 映射回复人的id -->
+        <property name="userid" type="java.lang.Integer">
+        	<column name="userid" length="50" not-null="true" />
+        </property>
+        <!-- 映射回复人的名字 -->
+        <property name="username" type="java.lang.String">
+          <column name="username" length="50" not-null="true" />
+        </property>
+         <!-- 映射problem id -->
+        <property name="problemid" type="java.lang.Integer">
+          <column name="problemid" length="50" not-null="true" />
+        </property>
+        
+        <!-- 映射赞 -->
+         <property name="support" type="java.lang.Integer">
+          <column name="support" length="10" not-null="false" />
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+	<!-- 第一部分：配置数据库的信息 -->
+
+	<property name="hibernate.connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<property name="hibernate.connection.url">
+		jdbc:mysql:///onlinelearning
+	</property>
+	<!-- <property name="hibernate.connection.url">jdbc:mysql:///onlinelearning</property> -->
+	<property name="hibernate.connection.username">root</property>
+	<property name="hibernate.connection.password">123456</property>
+	<!-- 第二部分：配置hibernate信息 可选-->
+	<!-- 输出底层的sql语句 -->
+	<property name="hibernate.show_sql">true</property>
+	<!-- 输出格式化 -->
+	<property name="hibernate.format_sql">true</property>
+	<!-- hibernate帮创建表，需要配置之后
+		update:如果已经有表，更新，如果没有则创建
+	-->
+	<property name="hibernate.hbm2ddl.auto">update</property>
+	<!-- 配置数据库方言
+		在mysql里面实现分页关键字limit,只能用在mysql里面
+		让hibernate框架识别不同的数据库特有的语句
+	-->
+	<property name="hibernate.dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+	<!-- 映射文件 -->
+	<mapping resource="com/learning/entity/Comment.hbm.xml" />
+	<mapping resource="com/learning/entity/Course.hbm.xml" />
+	<mapping resource="com/learning/entity/Problems.hbm.xml" />
+	<mapping resource="com/learning/entity/Video.hbm.xml" />
+	<mapping resource="com/learning/entity/LearningTracks.hbm.xml" />
+	<mapping resource="com/learning/entity/VideoComment.hbm.xml" />
+	<mapping resource="com/learning/entity/Support.hbm.xml" />
+	<mapping resource="com/learning/entity/CourseComment.hbm.xml" />
+	<mapping resource="com/learning/entity/CSupport.hbm.xml" />
+	<mapping resource="com/learning/entity/Collection.hbm.xml" />
+	<mapping resource="com/learning/entity/CourseTeacher.hbm.xml" />
+	<mapping resource="com/user/entity/UserBean.hbm.xml" />
+
+
+</session-factory>
+</hibernate-configuration>

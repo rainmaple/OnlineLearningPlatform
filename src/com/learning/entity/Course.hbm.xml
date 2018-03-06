@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 映射数据库的admin表 -->
+    <class name="com.learning.entity.Course" table="course">
+    	<!-- 映射id字段 -->
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <!-- 映射name字段 -->
+        <property name="coursename" type="java.lang.String">
+            <column name="coursename" length="100" not-null="true" />
+        </property>
+        <!-- 映射时长字段 -->
+        <property name="timelength" type="java.lang.String">
+            <column name="timelength" length="50" not-null="true" />
+        </property>
+        <!-- 映射课程类型字段 -->
+        <property name="courseType" type="java.lang.String">
+        	<column name="coursetype" length="50" not-null="true" />
+        </property>
+        <!-- 映射课程学习人数字段 -->
+        <property name="learnnum" type="java.lang.Integer">
+          <column name="learnnum" length="10" not-null="true" />
+        </property>
+        
+        <!-- 映射课程介绍字段 -->
+        <property name="coursedesc" type="java.lang.String">
+          <column name="coursedesc" length="500" not-null="false" />
+        </property>
+         <!-- 映射课程文件路径字段 -->
+        <property name="coursefile" type="java.lang.String">
+          <column name="coursefile" length="200" not-null="false" />
+        </property>
+        
+        <!-- 映射课程难度的字段 -->
+        <property name="dificulty" type="java.lang.String">
+           <column name="dificulty" length="50" not-null="false"></column>
+        </property>
+        
+        <property name="department" type="java.lang.String">
+           <column name="department" length="50" not-null="false"></column>
+        </property>
+        
+         <property name="position" type="java.lang.String">
+           <column name="position" length="50" not-null="false"></column>
+        </property>
+        
+        
+        
+    </class>
+</hibernate-mapping>

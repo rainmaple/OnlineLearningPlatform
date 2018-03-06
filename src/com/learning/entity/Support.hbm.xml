@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 映射数据库的admin表 -->
+    <class name="com.learning.entity.Support" table="support">
+    	<!-- 映射id字段 -->
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <!-- 映射userid字段 -->
+        <property name="userid" type="java.lang.Integer">
+            <column name="userid" length="20" not-null="true" />
+        </property>
+        <!-- 映射评论id字段 -->
+        <property name="videocommentid" type="java.lang.Integer">
+            <column name="videocommentid" length="50" not-null="true" />
+        </property>
+        
+        <!-- 映射是否点过赞 -->
+        <property name="ifsupport" type="java.lang.Integer">
+        	<column name="ifsupport" length="50" not-null="true" />
+        </property>
+      
+     
+      
+    </class>
+</hibernate-mapping>

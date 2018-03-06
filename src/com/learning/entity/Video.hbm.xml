@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 映射数据库的admin表 -->
+    <class name="com.learning.entity.Video" table="video">
+    	<!-- 映射id字段 -->
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <!-- 映射name字段 -->
+        <property name="videoname" type="java.lang.String">
+            <column name="videoname" length="100" not-null="true" />
+        </property>
+        <!-- 映射视频路径字段 -->
+        <property name="videofile" type="java.lang.String">
+            <column name="fileurl" length="50" not-null="true" />
+        </property>
+        <!-- 映射 视频的课程-->
+        <property name="belongto" type="java.lang.Integer">
+        	<column name="courseid" length="50" not-null="true" />
+        </property>
+        
+        <!-- 映射 视频的课程-->
+        <property name="videotime" type="java.lang.Double">
+        	<column name="videotime" length="10" not-null="false" />
+        </property>
+        
+        
+        <!-- 映射 视频的章节-->
+        <property name="chapter" type="java.lang.Integer">
+        	<column name="chapter" length="10" not-null="false" />
+        </property>
+        
+        <!-- 映射视频对应章节的第几节 -->
+        <property name="chapterde" type="java.lang.Integer">
+        	<column name="chapterde" length="10" not-null="false" />
+        </property>
+     
+     
+     </class>
+</hibernate-mapping>

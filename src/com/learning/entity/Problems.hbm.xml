@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 映射数据库的admin表 -->
+    <class name="com.learning.entity.Problems" table="problems">
+    	<!-- 映射id字段 -->
+        <id name="problem_id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <!-- 映射问题所属课程的id字段 -->
+        <property name="fromid" type="java.lang.Integer">
+            <column name="courseid" length="20" not-null="false" />
+        </property>
+        <!-- 映射发布者名字字段 -->
+        <property name="from_name" type="java.lang.String">
+            <column name="from_name" length="50" not-null="true" />
+        </property>
+        <!-- 映射发布时间 -->
+        <property name="submit_time" type="java.lang.String">
+        	<column name="submittime" length="50" not-null="true" />
+        </property>
+        <!-- 映射问题内容字段 -->
+        <property name="content" type="java.lang.String">
+          <column name="content" length="200" not-null="true" />
+        </property>
+        <!-- 映射第一条回复字段 -->
+        <property name="firstcomment" type="java.lang.String">
+          <column name="firstcomment" length="200" not-null="false" />
+        </property>
+        
+         <!-- 映射问题的title字段 -->
+        <property name="title" type="java.lang.String">
+          <column name="title" length="100" not-null="true" />
+        </property>
+        
+        <!-- 映射问题的type字段 -->
+        <property name="type" type="java.lang.String">
+          <column name="type" length="100" not-null="false" />
+        </property>
+        
+        <!-- 映射上传文件的路径 -->
+         <property name="filepath" type="java.lang.String">
+          <column name="filepath" length="100" not-null="false" />
+        </property>
+        
+        <property name="firstreplyuser" type="java.lang.String">
+          <column name="firstreplyuser" length="100" not-null="false" />
+        </property>
+        
+        
+         <property name="firstreplytime" type="java.lang.String">
+          <column name="firstreplytime" length="100" not-null="false" />
+        </property>
+        
+        <property name="viewnum" type="java.lang.Integer">
+          <column name="viewnum" length ="10" not-null="false"></column>
+        </property>
+      
+    </class>
+</hibernate-mapping>

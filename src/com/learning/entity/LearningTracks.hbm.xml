@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 映射数据库的admin表 -->
+    <class name="com.learning.entity.LearningTracks" table="tracks">
+
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity"></generator>
+        </id>
+    	
+    	<!-- 映射用户最近学习时间字段 -->
+        <property name="lastlearntime" type="java.lang.String">
+            <column name="lastlearntime" />
+        </property>
+        <!-- 映射用户name字段 -->
+        <property name="username" type="java.lang.String">
+            <column name="username" length="100" not-null="true" />
+        </property>
+        
+        
+        <!-- 映射用户id字段 -->
+        <property name="userid" type="java.lang.Integer">
+            <column name="userid" length="10" not-null="true" />
+        </property>
+        <!-- 映射课程id字段 -->
+        <property name="courseid" type="java.lang.Integer">
+        	<column name="courseid" length="10" not-null="true" />
+        </property>
+        <!-- 映射课程name字段 -->
+        <property name="coursename" type="java.lang.String">
+          <column name="coursename" length="100" not-null="true" />
+        </property>
+        
+        <!-- 映射课程完成情况字段 -->
+        <property name="finishpercent" type="java.lang.String">
+          <column name="finishpercent" length="10" not-null="false" />
+        </property>
+        
+        <!-- 映射看到哪字段 -->
+        <property name="lastchapter" type="java.lang.Integer">
+          <column name="lastchapter" length="10" not-null="false" />
+        </property>
+        
+         <property name="lastchapterde" type="java.lang.Integer">
+          <column name="lastchapterde" length="10" not-null="false" />
+        </property>
+        
+         <property name="videoid" type="java.lang.Integer">
+          <column name="videoid" length="10" not-null="false" />
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

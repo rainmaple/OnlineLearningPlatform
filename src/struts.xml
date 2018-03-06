@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.multipart.maxSize" value="1000701096" />
+
+<constant name="struts.devMode" value="true"></constant>
+	 
+	 <package name="course" extends="struts-default" namespace="/course">
+     	<action name="uploads" class="com.course.action.FileuploadAction">
+            <!-- 指定（限制）上传文件的类型，定义局部拦截器，修改默认拦截器的属性 
+                "fileUpload.maximumSize" ：限制上传最大的文件大小。 
+                "fileUpload.allowedTypes"：允许上传文件的类型。 
+                "fileUpload.allowedExtensions"：允许上传文件的可扩展文件类型。 -->
+            <interceptor-ref name="fileUpload">
+                <param name="fileUpload.maximumSize">500000000</param>
+                <param name="fileUpload.allowedTypes">text</param>
+                <param name="fileUpload.allowedExtensions">.txt,.ppt</param>
+            </interceptor-ref>
+            
+            <interceptor-ref name="defaultStack" />
+            <result name="success">/success.jsp</result>
+            <!-- 出现错误自动会返回input结果，进入结果视图 -->
+            <result name="input" >/error.jsp</result>
+        </action>
+        <action name="chapterlist" class="com.course.action.VideoListAction">
+           <result name="success">/course/showchapters.jsp</result>
+        </action>
+        <!-- 配置学习路线的action -->
+        <action name="gettracks" class="com.course.action.TracksAction" method="gettracks">
+          <result name="getok">/course/tracks.jsp</result>
+        </action>
+        <!-- 配置显示用户信息的action -->
+        <action name="showmessage" class="com.course.action.UserAction">
+          <result name="success">/course/imessagedisplay.jsp</result>
+        </action>
+        
+         <action name="changemessage" class="com.course.action.UserAction" method="changemessage">
+          <result type="redirectAction" name="changeok">showmessage</result>
+        </action>
+        
+        <action name="showcollection" class="com.course.action.CollectAction" method="getcollection">
+           <result name="collectok">/course/collection.jsp</result>
+        </action>
+        
+        <action name="getrecommend" class="com.course.action.RecommendAction"> 
+          <result name="success">/course/recommend.jsp</result>
+        </action>
+        
+        <action name="searchcou" class="com.course.action.CourseListAction" method="searchcou">
+           <result name="searchok">/course/showsearchcourse.jsp</result>
+        </action>
+       
+       
+       <action name="playvideo" class="com.course.action.VideoListAction" method="PlayVideo">
+           <result name="play">/playVideo.jsp</result> 
+       </action>
+        
+        
+      <action name="submitccomment" class="com.course.action.VideoListAction" method="submitcomment">
+      	<result type= "chain" name="submitreturn">chapterlist</result> 
+      </action>
+       
+        
+        <action name="courselist" class="com.course.action.CourseListAction">
+			<result name="success">/course/showallcourse.jsp</result>
+			
+		</action>
+		
+		<action name="upImage" class="com.course.action.upImageAction">
+			<result name="success">/course/showallcourse.jsp</result>
+			
+		</action>
+        
+       <action name="showcourselist" class="com.course.action.CourseListAction" method="getcourselistBypage">
+			<result name="success">/course/allCourse.jsp</result>
+			
+			
+			<result name="listbypage">/course/allCourse.jsp</result>
+
+		</action>
+        
+      
+        
+     </package>
+     
+     
+     <package name="typecourse" namespace="/typecourse" extends="json-default">
+     	<action name="showtype" class="com.course.action.CourseListAction" method="getcourlistbytype">
+        	<result name="courselist" type="json"></result>
+        </action>
+     
+     </package>
+     
+     
+     
+     <package name="proshow" namespace="/proshow" extends="json-default">
+     	<action name="showproblems" class="com.course.action.ProblemsAction" method="getprolistBypage">
+        	<result name="prolist" type="json"></result>
+        </action>
+     
+     </package>
+     
+     
+     
+     
+     <package name="comment" namespace="/externalcom" extends="json-default" >
+       <action name="comment" class="com.course.action.VideoListAction" method="getCourseCommentBypage">
+       	<result name="coursecomment" type="json"></result>
+       </action>
+     </package>
+     
+     
+     <package name="problems" extends="struts-default" namespace="/problems">
+       <action name="submitproblem" class="com.course.action.ProblemsAction">
+       		<result type="redirectAction" name="success">showproblems</result>
+       </action>
+       
+       
+        <action name="showproblems" class="com.course.action.ProblemsAction" method="firstgetProlist">
+        	<result name="firstlist">/problems/showproblems.jsp</result>
+        </action>
+       
+       <!-- 配置搜索功能 -->
+       <action name="searchpro" class="com.course.action.ProblemsAction" method="getProBykeywords">
+       		<result name="search">/problems/showsearchproblems.jsp</result>
+       </action>
+       
+       <action name="showdetail" class="com.course.action.ProblemsAction" method="showProdetailbyid">
+       		<result name="detail">/problems/questiondetail.jsp</result>
+       </action>
+       
+       
+       <action name="submitcom" class="com.course.action.ProblemsAction" method="submitprocom">
+       		<result type="redirectAction" name="submitok">showdetail.action?problemid=${#request.problemid}</result>
+       		 
+       </action>
+       
+      <!--  <action name="subreturn" class="com.course.action.ProblemsAction">
+       </action>
+        -->
+       
+      
+       
+     </package>
+     
+     
+     
+      <package name="default" namespace="/dianzan" extends="json-default">  
+      <!--客户端请求采用DMI（动态调用）-->  
+      <action name="input_user" class="com.course.action.UserAction">  
+          <result name="INPUT_USER">/Dianzan.jsp</result>  
+          <result name="hel" type="json"></result>
+          
+      </action> 
+        <!-- 配置暂停时更新学习时间 -->
+       		<action name="pauseaddtracks" class="com.course.action.TracksAction" method="addtracks">
+	      		<result name="pauseadd" type="json"></result>
+	       </action>
+      
+       <!-- 配置点赞的action -->
+       <action name="support" class="com.course.action.SupportAction">
+       	<result name="success" type="json"></result>
+       </action>
+       
+       <!-- 配置收藏爱心的点击后台 -->
+       <action name="collect" class="com.course.action.CollectAction">
+         <result name="success" type="json"></result>
+       </action>  
+       
+       
+       <action name="support2" class="com.course.action.SupportAction" method="updatesupport2">
+       	<result name="supp2" type="json"></result>
+       </action> 
+      
+      <action name="loadcomment" class="com.course.action.UserAction" method="getCommentList">  
+            <result name="vclist" type="json"></result>  
+        </action>  
+       
+      </package>
+      
+      
+      <package name="learning" namespace="/learning" extends="json-default">
+      
+	       <action name="addtracks" class="com.course.action.TracksAction">
+	      		<result name="success" type="json"></result>
+	       </action>
+	       
+	      
+	       
+	       <action name="startadd" class="com.course.action.TracksAction" method="startadd">
+	      		<result name="startaddlt" type="json"></result>
+	       </action>
+      </package>
+      
+      
+      <!-- 配置刷新推荐课程的action -->
+      <package name="recommend" namespace="/recommend" extends="json-default">
+      	<action name="changerecommend" class="com.course.action.RecommendAction" method="changerecommend">
+      	  <result type="json" name="changeok"></result>
+      	</action>
+      
+      </package>
+      
+      
+      
+      <package name="admin" namespace="/admin" extends="json-default">
+      	<action name="employlearn" class="com.course.action.RecommendAction" method="getempstatics">
+      	  <result type="json" name="getok"></result>
+      	</action>
+      
+      </package>
+      
+     
+     
+     <!-- 配置文件下载的action -->
+     <package name="download" namespace="/download" extends="default">
+     <result-types> 
+    		<result-type name="streamx" class="cc.fozone.struts2.StreamResultX"/> 
+	</result-types>
+         
+         <action name="download" class="com.course.action.DownloadAction">
+            <result type="streamx">
+                 <!-- 下载文件类型定义 -->
+                 <param name="contentType">application/octet-stream</param>
+                 <!-- 下载文件输出流定义 -->
+                 <param name="inputName">inputStream</param>　　　　　　　　　　　　　　　　　　
+                 <!-- 下载文件处理方式 --> 　　　　　　　　　　　　　　　　
+                 <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                 <!-- 下载文件的缓冲大小 -->
+                 <param name="bufferSize">4096</param>
+                 <param name="contentCharSet">UTF-8</param>
+            </result>
+        </action>
+         
+         
+         <action name="downloadMultiFile" class="com.course.action.MultiFileDownloadAction" method="downloadMultiFile">
+           <result type="redirectAction">
+               <param name="actionName">download</param>
+               <param name="nameSpace">/download</param>
+               <!--附件的完整路径  -->
+               <param name="fileName">${fileName}</param>
+           </result>
+       </action>
+         
+    </package>
+    
+    
+    
+    
+      	<!-- 用户包 -->
+	<package name="user"  namespace="/user"  extends="json-default" >
+		
+		<!-- 修改用户信息 -->
+		<action name="ChangeInfoAction" class="com.user.action.ChangeInfoAction" method="change">
+			<result name="success" type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">result</param>  
+            </result>  
+	    </action>
+	    
+		<!-- 检验用户邮箱 -->
+		<action name="CheckMailAction" class="com.user.action.CheckMailAction" method="check">
+			<result name="success" type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">result</param>  
+            </result>  
+	    </action>
+	    
+	    <!-- 登录-->
+		<action name="LoginAction" class="com.user.action.LoginAction" method="login">
+			<result name="success" type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">result</param>  
+            </result>  
+	    </action>
+	    
+	     <!-- 注册-->
+		<action name="RegisteredAction" class="com.user.action.RegisteredAction" method="save">
+			<result name="success" type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">result</param>  
+            </result>  
+	    </action>
+	    
+	    <!-- 发送邮件-->
+		<action name="SendMailAction" class="com.user.action.SendMailAction" method="write">
+			<result name="success" type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">result</param>  
+            </result>  
+	    </action>
+	    
+	    <!-- 个人信息显示页面，显示用户信息-->
+		<action name="UserInfoAction" class="com.user.action.UserInfoAction" method="info">
+			<result name="success" type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">result</param>  
+            </result>  
+	    </action>    
+	    
+     </package>
+     
+    
+     
+     
+</struts>    
+
