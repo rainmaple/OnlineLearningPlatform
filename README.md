@@ -1,12 +1,18 @@
 # OnlineLearningPlatform
 ## 在线学习平台
 
-![视频介绍](https://www.bilibili.com/video/av13016707?from=search&seid=3839308590928444704)
+<iframe src="//player.bilibili.com/player.html?aid=13016707&cid=21373660&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+
+
+### 简介
 
 ![](assets/markdown-img-paste-20181231150102365.png)
 
 ![](assets/markdown-img-paste-20181231150145413.png)
+
 ### 用户与管理员模式分离
+
 ![](assets/markdown-img-paste-20181231150845983.png)
 ### 学习数据分析及预测推荐
 采用机器学习回归算法实现学习时间预测，使用邮件对学员进行学习提醒；对数据进行分析，采用Echarts3.0技术对学习数据分析结果进行可视化
